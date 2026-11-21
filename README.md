@@ -13,7 +13,7 @@ PWA instalable para organizar tareas de trabajo en campo, adjuntar fotografías 
 2. Abre una terminal integrada con **Terminal → Nueva terminal**.
 3. Ejecuta `npm run dev` y abre `http://localhost:5173`.
 
-Vite sirve la aplicación por HTTPS local seguro (`localhost`), requisito para el Service Worker, la cámara y la geolocalización. Para probar en un teléfono, publica con HTTPS y abre la URL segura en el dispositivo.
+El servidor local sirve la aplicación en `localhost`, contexto seguro requerido para el Service Worker, la cámara y la geolocalización. Para probar en un teléfono, publica con HTTPS y abre la URL segura en el dispositivo.
 
 ## Funciones incluidas
 
@@ -32,5 +32,9 @@ Vite sirve la aplicación por HTTPS local seguro (`localhost`), requisito para e
 npm run build
 npm run preview
 ```
+
+## Publicar en Vercel
+
+El archivo `vercel.json` ya indica a Vercel que use el preset **Other**, ejecute `npm run build` y publique `dist/` como sitio estático. En la configuración del proyecto deja la carpeta raíz como la raíz del repositorio y usa esos mismos valores si el panel solicita sobrescribirlos. Después de guardar el cambio, crea un nuevo deployment. El servidor `server.js` es solo para desarrollo local; no hace falta ejecutar `npm run start` en Vercel.
 
 Los registros y las fotos son locales al navegador y dispositivo donde se capturaron. El permiso de ubicación/cámara se solicita cuando el usuario toca su acción. Geolocalización y cámara requieren contexto seguro (HTTPS o localhost).
