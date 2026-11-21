@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#102c25" />
+  <meta name="description" content="Organiza tus tareas de campo, guarda evidencias y trabaja incluso sin conexión." />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <title>Terreno — Bitácora de campo</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Terreno, inicio"><span class="brand-mark">T</span><span>terreno<span class="brand-dot">.</span></span></a>
+      <div class="top-actions"><span class="connection" id="connection"><i></i><span>En línea</span></span><button class="icon-btn install-btn" id="installBtn" hidden aria-label="Instalar aplicación" title="Instalar aplicación">↓</button><button class="avatar" aria-label="Perfil">A</button></div>
+    </header>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> TU ESPACIO DE TRABAJO</div><h1>Un día en el<br><em>terreno.</em></h1><p>Tu bitácora de trabajo, lista donde sea que estés.</p>
+          <div class="hero-meta"><span id="todayLabel"></span><span class="meta-divider"></span><span><b id="openCount">0</b> pendientes</span></div>
+        </div><div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="art-card"><span class="art-check">✓</span><span>Todo en orden</span></div><div class="art-stem"></div></div>
+      </section>
+      <section class="workspace">
+        <div class="section-heading"><div><div class="eyebrow muted">TU JORNADA</div><h2>Bitácora <span id="taskCount" class="count-pill">0</span></h2></div><button class="primary-btn" id="newTaskBtn"><span>＋</span> Nueva tarea</button></div>
+        <div class="toolbar"><div class="filters" role="tablist" aria-label="Filtrar tareas"><button class="filter active" data-filter="all">Todas <span id="allCount">0</span></button><button class="filter" data-filter="open">Pendientes <span id="pendingCount">0</span></button><button class="filter" data-filter="done">Completadas <span id="doneCount">0</span></button></div><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar en bitácora" aria-label="Buscar en bitácora" /></label></div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state" hidden><div class="empty-icon">✳</div><h3>Tu bitácora empieza aquí</h3><p>Añade tu primera tarea para organizar el día.</p><button class="text-btn" id="emptyNewBtn">Crear primera tarea <span>→</span></button></div>
+      </section>
+      <section class="offline-note"><span class="offline-icon">⌁</span><div><strong>Tu trabajo viaja contigo</strong><p>La bitácora se guarda en este dispositivo y está disponible sin conexión.</p></div><span class="offline-check">✓</span></section>
+    </main>
+    <footer><span>TERRENO <span class="brand-dot">.</span> BITÁCORA DE CAMPO</span><span id="storageLabel">Guardado en este dispositivo</span></footer>
+  </div>
+  <dialog id="taskDialog"><form id="taskForm"><div class="dialog-head"><div><div class="eyebrow muted">NUEVA ENTRADA</div><h2 id="dialogTitle">Añadir a bitácora</h2></div><button class="icon-btn close-btn" type="button" id="closeDialog" aria-label="Cerrar">×</button></div>
+    <label class="field-label" for="taskTitle">¿Qué necesitas hacer?<span class="required">*</span></label><input class="field" id="taskTitle" name="title" maxlength="100" placeholder="Ej. Revisar sistema de riego" required />
+    <label class="field-label" for="taskNotes">Notas <span class="optional">(opcional)</span></label><textarea class="field textarea" id="taskNotes" name="notes" maxlength="500" placeholder="Añade detalles, materiales o indicaciones…"></textarea>
+    <div class="form-row"><div><label class="field-label" for="taskDate">Fecha</label><input class="field" id="taskDate" name="date" type="date" /></div><div><label class="field-label" for="taskPriority">Prioridad</label><select class="field" id="taskPriority" name="priority"><option value="normal">Normal</option><option value="high">Alta</option><option value="low">Baja</option></select></div></div>
+    <div class="native-actions"><button type="button" class="native-btn" id="locationBtn"><span>⌖</span><span id="locationText">Añadir ubicación</span></button><label class="native-btn camera-btn"><span>▧</span><span id="photoText">Adjuntar foto</span><input type="file" id="photoInput" accept="image/*" capture="environment" hidden /></label></div><div id="attachmentPreview" class="attachment-preview" hidden></div>
+    <div class="dialog-footer"><button type="button" class="secondary-btn" id="cancelDialog">Cancelar</button><button class="primary-btn" type="submit">Guardar tarea <span>→</span></button></div>
+  </form></dialog>
+  <div id="toast" role="status" class="toast" aria-live="polite"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
